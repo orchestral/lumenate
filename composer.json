@@ -1,0 +1,16 @@
+{
+    "name": "orchestra/lumenate",
+    "description": "Orchestra Platform Lumenate Installer",
+    "type": "installer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mior Muhammad Zaki",
+            "email": "crynobone@gmail.com"
+        }
+    ],
+    "require": {
+        "orchestra/studio": "~3.1"
+    },
+    "minimum-stability": "dev"
+}
