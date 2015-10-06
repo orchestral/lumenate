@@ -20,6 +20,7 @@
     "require": {
         "illuminate/console": "~5.1",
         "illuminate/filesystem": "~5.1",
+        "league/flysystem": "~1.0",
         "symfony/process": "~2.3|~3.0",
         "orchestra/studio": "^3.1.3"
     },
