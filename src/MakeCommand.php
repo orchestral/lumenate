@@ -55,7 +55,7 @@ class MakeCommand extends Command
         $vendorPath = "{$basePath}/vendor";
 
         $paths = [
-            "{$vendorPath}/orchestra/lumenate/lumen" => "{$basePath}/lumen",
+            "{$vendorPath}/orchestra/lumen/skeleton" => "{$basePath}/lumen",
         ];
 
         $this->publishFiles(new Filesystem(), $paths, $input->getOption('force'));
