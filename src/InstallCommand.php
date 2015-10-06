@@ -31,7 +31,7 @@ class InstallCommand extends Command
     {
         $composer = $this->findComposer();
 
-        $process = new Process($composer . ' require orchestra/lumen', null, null, null, null);
+        $process = new Process($composer . ' require "orchestra/lumen=~3.1"', null, null, null, null);
 
         $process->run(function ($type, $line) use ($output) {
             $output->write($line);
