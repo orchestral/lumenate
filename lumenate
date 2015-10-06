@@ -9,5 +9,6 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
 
 $app = new Symfony\Component\Console\Application('Laravel Lumenate', '1.0.0');
 $app->add(new Orchestra\Lumenate\InstallCommand());
+$app->add(new Orchestra\Lumenate\MakeCommand());
 
 $app->run();
