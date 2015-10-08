@@ -25,13 +25,14 @@ class InstallCommand extends Command
      *
      * @param InputInterface $input
      * @param OutputInterface $output
+     *
      * @return void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $composer = $this->findComposer();
 
-        $process = new Process($composer . ' require "orchestra/lumen=~3.1"', null, null, null, null);
+        $process = new Process($composer.' require "orchestra/lumen=~3.1"', null, null, null, null);
 
         $process->run(function ($type, $line) use ($output) {
             $output->write($line);
@@ -45,8 +46,8 @@ class InstallCommand extends Command
      */
     private function findComposer()
     {
-        if (file_exists(getcwd() . '/composer.phar')) {
-            return '"' . PHP_BINARY . '" composer.phar"';
+        if (file_exists(getcwd().'/composer.phar')) {
+            return '"'.PHP_BINARY.'" composer.phar"';
         }
 
         return 'composer';

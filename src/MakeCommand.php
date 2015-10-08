@@ -44,14 +44,15 @@ class MakeCommand extends Command
      *
      * @param InputInterface $input
      * @param OutputInterface $output
+     *
      * @return void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->input = $input;
+        $this->input  = $input;
         $this->output = $output;
 
-        $basePath = getcwd();
+        $basePath   = getcwd();
         $vendorPath = "{$basePath}/vendor";
 
         $paths = [
