@@ -11,7 +11,7 @@ First, install the Lumenate installer and make sure that the global Composer `bi
 
     composer global require "orchestra/lumenate=^0.1"
 
-Next, create a new Laravel application and install Lumen:
+Next, create a new Orchestra Platform application and install Lumen:
 
     composer create-project orchestra/platform application
     cd application
