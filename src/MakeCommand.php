@@ -52,14 +52,54 @@ class MakeCommand extends Command
         $this->input  = $input;
         $this->output = $output;
 
-        $basePath   = getcwd();
-        $vendorPath = "{$basePath}/vendor";
+        $filesystem = new Filesystem();
+
+        $paths = $this->getInstallationPaths($filesystem);
 
         $paths = [
-            "{$vendorPath}/orchestra/lumen/skeleton" => "{$basePath}/lumen",
+            "{vendor}/orchestra/lumen/skeleton/app" => "{base}/app/Lumen",
+            "{vendor}/orchestra/lumen/skeleton/config" => "{base}/lumen/config",
+            "{vendor}/orchestra/lumen/skeleton/public" => "{base}/lumen/public",
+            "{vendor}/orchestra/lumen/skeleton/artisan" => "{base}/lumen/artisan",
+            "{vendor}/orchestra/lumen/skeleton/bootstrap.php" => "{base}/lumen/bootstrap.php",
+            "{vendor}/orchestra/lumen/skeleton/server.php" => "{base}/lumen/server.php",
+            "{vendor}/orchestra/lumen/skeleton/api.php" => "{base}/routes/api.php",
+            "{vendor}/orchestra/lumen/skeleton/lumen.php" => "{base}/routes/lumen.php",
         ];
 
-        $this->publishFiles(new Filesystem(), $paths, $input->getOption('force'));
+        $this->publishFiles($filesystem, $paths, $input->getOption('force'));
+    }
+
+    /**
+     * Get installation paths from lumen.json file.
+     *
+     * @param  \Illuminate\Filesystem\Filesystem  $filesystem
+     *
+     * @return array
+     */
+    protected function getInstallationPaths(Filesystem $filesystem)
+    {
+        $basePath   = getcwd();
+        $vendorPath = "{$basePath}/vendor/orchestra/lumen/skeleton";
+        $paths = [];
+
+        if (! $filesystem->isFile($schema = "{$basePath}/lumen.json")) {
+            $schema = "{$vendorPath}/lumen.json";
+        }
+
+        $paths = json_decode($filesystem->get($schema), true);
+
+        if (is_null($path)) {
+            return ["{$vendorPath}" => "{$basePath}/lumen"];
+        }
+
+        $paths = array_map(function ($path) use ($vendorPath) {
+            return "{$vendorPath}/{$path}";
+        }, array_flip($paths));
+
+        return array_map(function ($path) use ($basePath) {
+            return "{$basePath}/{$path}";
+        }, array_flip($paths));
     }
 
     /**
