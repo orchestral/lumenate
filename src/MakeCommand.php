@@ -78,7 +78,7 @@ class MakeCommand extends Command
 
         $paths = json_decode($filesystem->get($schema), true);
 
-        if (is_null($path)) {
+        if (is_null($paths)) {
             return ["{$vendorPath}" => "{$basePath}/lumen"];
         }
 
