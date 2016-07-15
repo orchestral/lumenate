@@ -56,17 +56,6 @@ class MakeCommand extends Command
 
         $paths = $this->getInstallationPaths($filesystem);
 
-        $paths = [
-            "{vendor}/orchestra/lumen/skeleton/app" => "{base}/app/Lumen",
-            "{vendor}/orchestra/lumen/skeleton/config" => "{base}/lumen/config",
-            "{vendor}/orchestra/lumen/skeleton/public" => "{base}/lumen/public",
-            "{vendor}/orchestra/lumen/skeleton/artisan" => "{base}/lumen/artisan",
-            "{vendor}/orchestra/lumen/skeleton/bootstrap.php" => "{base}/lumen/bootstrap.php",
-            "{vendor}/orchestra/lumen/skeleton/server.php" => "{base}/lumen/server.php",
-            "{vendor}/orchestra/lumen/skeleton/api.php" => "{base}/routes/api.php",
-            "{vendor}/orchestra/lumen/skeleton/lumen.php" => "{base}/routes/lumen.php",
-        ];
-
         $this->publishFiles($filesystem, $paths, $input->getOption('force'));
     }
 
