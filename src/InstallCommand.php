@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Lumenate;
+<?php
+
+namespace Orchestra\Lumenate;
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Console\Command\Command;
