@@ -1,7 +1,8 @@
-<?php namespace Orchestra\Lumenate;
+<?php
+
+namespace Orchestra\Lumenate;
 
 use Illuminate\Filesystem\Filesystem;
-use Orchestra\Studio\Traits\PublishFilesTrait;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
@@ -9,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class MakeCommand extends Command
 {
-    use PublishFilesTrait;
+    use Traits\PublishFiles;
 
     /**
      * The input interface implementation.
