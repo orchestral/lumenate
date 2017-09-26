@@ -2,7 +2,6 @@
 
 $finder = Symfony\Component\Finder\Finder::create()
     ->files()
-    ->in(__DIR__.'/skeleton')
     ->in(__DIR__.'/src')
     ->ignoreDotFiles(true)
     ->ignoreVCS(true);
