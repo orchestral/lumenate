@@ -18,10 +18,10 @@
         "lumenate"
     ],
     "require": {
-        "illuminate/console": "^5.1",
-        "illuminate/filesystem": "^5.1",
+        "illuminate/console": "^5.5",
+        "illuminate/filesystem": "^5.5",
         "league/flysystem": "^1.0",
-        "symfony/process": "^2.3 || ^3.0"
+        "symfony/process": "^3.0 || ^4.0"
     },
     "extra": {
         "branch-alias": {
