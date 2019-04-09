@@ -9,7 +9,7 @@ Lumenate is an experimental project primarily intended for extending API functio
 
 First, install the Lumenate installer and make sure that the global Composer `bin` directory is within your system's `$PATH`:
 
-    composer global require "orchestra/lumenate=^0.1"
+    composer global require "orchestra/lumenate=^0.4"
 
 Next, create a new Orchestra Platform application and install Lumen:
 
