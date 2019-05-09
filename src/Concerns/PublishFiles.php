@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Lumenate\Traits;
+namespace Orchestra\Lumenate\Concerns;
 
 use League\Flysystem\MountManager;
 use Illuminate\Filesystem\Filesystem;
@@ -127,12 +127,11 @@ trait PublishFiles
      * Write a string as standard output.
      *
      * @param  string  $string
-     * @param  string  $style
-     * @param  null|int|string  $verbosity
+     * @param  string|null  $style
      *
      * @return void
      */
-    abstract public function line($string, $style = null, $verbosity = null);
+    abstract public function line($string, $style = null);
 
     /**
      * Replace the namespace for the given stub.

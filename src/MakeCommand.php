@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class MakeCommand extends Command
 {
-    use Traits\PublishFiles;
+    use Concerns\PublishFiles;
 
     /**
      * The input interface implementation.
@@ -108,12 +108,15 @@ class MakeCommand extends Command
      * Write a string as standard output.
      *
      * @param  string  $string
+     * @param  string  $style
      *
      * @return void
      */
-    public function line($string)
+    public function line($string, $style = null)
     {
-        $this->output->writeln($string);
+        $styled = $style ? "<$style>$string</$style>" : $string;
+
+        $this->output->writeln($styled);
     }
 
     /**
