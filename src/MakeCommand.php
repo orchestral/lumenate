@@ -22,7 +22,7 @@ class MakeCommand extends Command
     /**
      * The output interface implementation.
      *
-     * @var \Illuminate\Console\OutputStyle
+     * @var \Symfony\Component\Console\Output\OutputInterface
      */
     protected $output;
 
@@ -43,21 +43,19 @@ class MakeCommand extends Command
     /**
      * Execute the command.
      *
-     * @param InputInterface $input
-     * @param OutputInterface $output
+     * @param \Symfony\Component\Console\Input\InputInterface $input
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @return void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->input  = $input;
+        $this->input = $input;
         $this->output = $output;
 
-        $filesystem = new Filesystem();
-
-        $paths = $this->getInstallationPaths($filesystem);
-
-        $this->publishFiles($filesystem, $paths, $input->getOption('force'));
+        $this->publishFiles(
+            new Filesystem(), $this->getInstallationPaths($filesystem), $input->getOption('force')
+        );
     }
 
     /**
@@ -67,9 +65,9 @@ class MakeCommand extends Command
      *
      * @return array
      */
-    protected function getInstallationPaths(Filesystem $filesystem)
+    protected function getInstallationPaths(Filesystem $filesystem): array
     {
-        $basePath   = getcwd();
+        $basePath = \getcwd();
         $vendorPath = "{$basePath}/vendor/orchestra/lumen/skeleton";
         $paths = [];
 
@@ -77,31 +75,32 @@ class MakeCommand extends Command
             $schema = "{$vendorPath}/lumen.json";
         }
 
-        $paths = json_decode($filesystem->get($schema), true);
+        $paths = \json_decode($filesystem->get($schema), true);
 
-        if (is_null($paths)) {
+        if (\is_null($paths)) {
             return ["{$vendorPath}" => "{$basePath}/lumen"];
         }
 
-        $paths = array_map(function ($path) use ($vendorPath) {
+        $paths = \array_map(static function ($path) use ($vendorPath) {
             return "{$vendorPath}/{$path}";
-        }, array_flip($paths));
+        }, \array_flip($paths));
 
-        return array_map(function ($path) use ($basePath) {
+        return \array_map(static function ($path) use ($basePath) {
             return "{$basePath}/{$path}";
-        }, array_flip($paths));
+        }, \array_flip($paths));
     }
 
     /**
      * Write a string as error output.
      *
      * @param  string  $string
+     * @param  int|string|null  $verbosity
      *
      * @return void
      */
-    public function error($string)
+    public function error(string $string, $verbosity = null): void
     {
-        $this->output->writeln("<error>$string</error>");
+        $this->output->writeln("<error>{$string}</error>", $verbosity);
     }
 
     /**
@@ -112,28 +111,11 @@ class MakeCommand extends Command
      *
      * @return void
      */
-    public function line($string, $style = null)
+    public function line(string $string, ?string $style = null): void
     {
-        $styled = $style ? "<$style>$string</$style>" : $string;
+        $styled = $style ? "<{$style}>{$string}</{$style}>" : $string;
 
         $this->output->writeln($styled);
-    }
-
-    /**
-     * Write a status message to the console.
-     *
-     * @param  string  $from
-     * @param  string  $to
-     * @param  string  $type
-     *
-     * @return void
-     */
-    protected function status($from, $to, $type)
-    {
-        $from = trim(str_replace(getcwd(), '', realpath($from)), '/');
-        $to   = trim(str_replace(getcwd(), '', realpath($to)), '/');
-
-        $this->line('<info>Copied '.$type.'</info> <comment>['.$from.']</comment> <info>To</info> <comment>['.$to.']</comment>');
     }
 
     /**
@@ -141,9 +123,9 @@ class MakeCommand extends Command
      *
      * @param  string  $stub
      *
-     * @return $this
+     * @return string
      */
-    protected function replaceNamespace($stub)
+    protected function replaceNamespace(string $stub): string
     {
         return $stub;
     }

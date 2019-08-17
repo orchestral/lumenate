@@ -25,18 +25,16 @@ class InstallCommand extends Command
     /**
      * Execute the command.
      *
-     * @param InputInterface $input
-     * @param OutputInterface $output
+     * @param \Symfony\Component\Console\Input\InputInterface $input
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @return void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $composer = $this->findComposer();
+        $process = new Process($this->findComposer().' require "orchestra/lumen=^3.5"', null, null, null, null);
 
-        $process = new Process($composer.' require "orchestra/lumen=~3.1"', null, null, null, null);
-
-        $process->run(function ($type, $line) use ($output) {
+        $process->run(static function ($type, $line) use ($output) {
             $output->write($line);
         });
     }
@@ -46,9 +44,9 @@ class InstallCommand extends Command
      *
      * @return string
      */
-    private function findComposer()
+    private function findComposer(): string
     {
-        if (file_exists(getcwd().'/composer.phar')) {
+        if (\file_exists(\getcwd().'/composer.phar')) {
             return '"'.PHP_BINARY.'" composer.phar"';
         }
 

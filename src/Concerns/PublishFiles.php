@@ -68,7 +68,7 @@ trait PublishFiles
     {
         $manager = new MountManager([
             'from' => new Flysystem(new LocalAdapter($from)),
-            'to'   => new Flysystem(new LocalAdapter($to)),
+            'to' => new Flysystem(new LocalAdapter($to)),
         ]);
 
         foreach ($manager->listContents('from://', true) as $file) {
@@ -81,6 +81,7 @@ trait PublishFiles
 
         $this->status($from, $to, 'Directory');
     }
+
     /**
      * Create the directory to house the published files if needed.
      *
@@ -107,21 +108,21 @@ trait PublishFiles
      */
     protected function status($from, $to, $type)
     {
-        $from = str_replace(base_path(), '', realpath($from));
-        $to   = str_replace(base_path(), '', realpath($to));
+        $from = \str_replace(\base_path(), '', \realpath($from));
+        $to = \str_replace(\base_path(), '', \realpath($to));
 
-        $this->line('<info>Copied '.$type.'</info> <comment>['.$from.']</comment> <info>To</info> <comment>['.$to.']</comment>');
+        $this->line("<info>Copied {$type}</info> <comment>[{$from}]</comment> <info>To</info> <comment>[{$to}]</comment>");
     }
 
     /**
      * Write a string as error output.
      *
      * @param  string  $string
-     * @param  null|int|string  $verbosity
+     * @param  int|string|null  $verbosity
      *
      * @return void
      */
-    abstract public function error($string, $verbosity = null);
+    abstract public function error(string $string, $verbosity = null): void;
 
     /**
      * Write a string as standard output.
@@ -131,7 +132,7 @@ trait PublishFiles
      *
      * @return void
      */
-    abstract public function line($string, $style = null);
+    abstract public function line(string $string, ?string $style = null): void;
 
     /**
      * Replace the namespace for the given stub.
@@ -140,5 +141,5 @@ trait PublishFiles
      *
      * @return $this
      */
-    abstract protected function replaceNamespace($stub);
+    abstract protected function replaceNamespace(string $stub): string;
 }
