@@ -1,15 +1,13 @@
 Orchestra Platform Lumenate Installer
 ==============
 
-[![Join the chat at https://gitter.im/orchestral/lumenate](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/orchestral/lumenate?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 Lumenate is an experimental project primarily intended for extending API functionality on Orchestra Platform by adding Lumen on the same codebase as your primary application.
 
 ## Installation
 
 First, install the Lumenate installer and make sure that the global Composer `bin` directory is within your system's `$PATH`:
 
-    composer global require "orchestra/lumenate=^0.4"
+    composer global require "orchestra/lumenate=^1.0"
 
 Next, create a new Orchestra Platform application and install Lumen:
 
