@@ -19,7 +19,8 @@ class InstallCommand extends Command
         $this->ignoreValidationErrors();
 
         $this->setName('install')
-                ->setDescription('Install Lumen into the current project.');
+                ->setDescription('Install Lumen into the current project.')
+                ->addOption('version', null, InputOption::VALUE_OPTIONAL, 'Install Lumen using following version', '4.0');
     }
 
     /**
@@ -32,7 +33,9 @@ class InstallCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $process = new Process($this->findComposer().' require "orchestra/lumen=^3.5"', null, null, null, null);
+        $version = $input->getOption('version');
+
+        $process = new Process($this->findComposer().' require "orchestra/lumen=^'.$version.'"', null, null, null, null);
 
         $process->run(static function ($type, $line) use ($output) {
             $output->write($line);
