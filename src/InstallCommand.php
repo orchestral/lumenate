@@ -27,9 +27,6 @@ class InstallCommand extends Command
     /**
      * Execute the command.
      *
-     * @param \Symfony\Component\Console\Input\InputInterface $input
-     * @param \Symfony\Component\Console\Output\OutputInterface $output
-     *
      * @return void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -45,8 +42,6 @@ class InstallCommand extends Command
 
     /**
      * Get the composer command for the environment.
-     *
-     * @return string
      */
     private function findComposer(): string
     {

@@ -12,8 +12,6 @@ trait PublishFiles
     /**
      * Publish files.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $filesystem
-     * @param  array  $paths
      * @param  bool  $force
      *
      * @return void
@@ -34,7 +32,6 @@ trait PublishFiles
     /**
      * Publish the file to the given path.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $filesystem
      * @param  string  $from
      * @param  string  $to
      * @param  bool  $force
@@ -85,7 +82,6 @@ trait PublishFiles
     /**
      * Create the directory to house the published files if needed.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $filesystem
      * @param  string  $directory
      *
      * @return void
@@ -117,27 +113,17 @@ trait PublishFiles
     /**
      * Write a string as error output.
      *
-     * @param  string  $string
      * @param  int|string|null  $verbosity
-     *
-     * @return void
      */
     abstract public function error(string $string, $verbosity = null): void;
 
     /**
      * Write a string as standard output.
-     *
-     * @param  string  $string
-     * @param  string|null  $style
-     *
-     * @return void
      */
     abstract public function line(string $string, ?string $style = null): void;
 
     /**
      * Replace the namespace for the given stub.
-     *
-     * @param  string  $stub
      *
      * @return $this
      */

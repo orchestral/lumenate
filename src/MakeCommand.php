@@ -43,9 +43,6 @@ class MakeCommand extends Command
     /**
      * Execute the command.
      *
-     * @param \Symfony\Component\Console\Input\InputInterface $input
-     * @param \Symfony\Component\Console\Output\OutputInterface $output
-     *
      * @return void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -60,10 +57,6 @@ class MakeCommand extends Command
 
     /**
      * Get installation paths from lumen.json file.
-     *
-     * @param  \Illuminate\Filesystem\Filesystem  $filesystem
-     *
-     * @return array
      */
     protected function getInstallationPaths(Filesystem $filesystem): array
     {
@@ -93,10 +86,7 @@ class MakeCommand extends Command
     /**
      * Write a string as error output.
      *
-     * @param  string  $string
      * @param  int|string|null  $verbosity
-     *
-     * @return void
      */
     public function error(string $string, $verbosity = null): void
     {
@@ -106,10 +96,7 @@ class MakeCommand extends Command
     /**
      * Write a string as standard output.
      *
-     * @param  string  $string
      * @param  string  $style
-     *
-     * @return void
      */
     public function line(string $string, ?string $style = null): void
     {
@@ -120,10 +107,6 @@ class MakeCommand extends Command
 
     /**
      * Replace the namespace for the given stub.
-     *
-     * @param  string  $stub
-     *
-     * @return string
      */
     protected function replaceNamespace(string $stub): string
     {
