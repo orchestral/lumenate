@@ -4,7 +4,7 @@ namespace Orchestra\Lumenate;
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -21,7 +21,7 @@ class InstallCommand extends Command
 
         $this->setName('install')
                 ->setDescription('Install Lumen into the current project.')
-                ->addOption('version', null, InputOption::VALUE_OPTIONAL, 'Install Lumen using following version', '4.0');
+                ->addArgument('version', InputArgument::OPTIONAL, 'Install Lumen using following version', '4.0');
     }
 
     /**
@@ -34,7 +34,7 @@ class InstallCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $version = $input->getOption('version');
+        $version = $input->getArgument('version') ?? '4.0';
 
         $process = new Process($this->findComposer().' require "orchestra/lumen=^'.$version.'"', null, null, null, null);
 
