@@ -27,7 +27,7 @@ class InstallCommand extends Command
     /**
      * Execute the command.
      *
-     * @return void
+     * @return int 0 if everything went fine, or an exit code
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -38,6 +38,8 @@ class InstallCommand extends Command
         $process->run(static function ($type, $line) use ($output) {
             $output->write($line);
         });
+
+        return 0;
     }
 
     /**

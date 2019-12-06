@@ -43,7 +43,7 @@ class MakeCommand extends Command
     /**
      * Execute the command.
      *
-     * @return void
+     * @return int 0 if everything went fine, or an exit code
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -53,6 +53,8 @@ class MakeCommand extends Command
         $this->publishFiles(
             new Filesystem(), $this->getInstallationPaths($filesystem), $input->getOption('force')
         );
+
+        return 0;
     }
 
     /**
