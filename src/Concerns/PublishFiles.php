@@ -104,8 +104,10 @@ trait PublishFiles
      */
     protected function status($from, $to, $type)
     {
-        $from = \str_replace(\base_path(), '', \realpath($from));
-        $to = \str_replace(\base_path(), '', \realpath($to));
+        $basePath = \function_exists('base_path') ? \base_path() : \getcwd();
+
+        $from = \str_replace($basePath, '', \realpath($from));
+        $to = \str_replace($basePath, '', \realpath($to));
 
         $this->line("<info>Copied {$type}</info> <comment>[{$from}]</comment> <info>To</info> <comment>[{$to}]</comment>");
     }
