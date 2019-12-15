@@ -36,7 +36,7 @@ class InstallCommand extends Command
     {
         $version = $input->getArgument('version') ?? '4.0';
 
-        $process = new Process($this->findComposer().' require "orchestra/lumen=^'.$version.'"', null, null, null, null);
+        $process = Process::fromShellCommandline($this->findComposer().' require "orchestra/lumen=^'.$version.'"', null, null, null, null);
 
         $process->run(static function ($type, $line) use ($output) {
             $output->write($line);
