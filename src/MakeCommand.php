@@ -53,8 +53,10 @@ class MakeCommand extends Command
         $this->input = $input;
         $this->output = $output;
 
+        $filesystem = new Filesystem();
+
         $this->publishFiles(
-            new Filesystem(), $this->getInstallationPaths($filesystem), $input->getOption('force')
+            $filesystem, $this->getInstallationPaths($filesystem), $input->getOption('force')
         );
     }
 
