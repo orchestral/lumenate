@@ -3,6 +3,11 @@ Orchestra Platform Lumenate Installer
 
 Lumenate is an experimental project primarily intended for extending API functionality on Orchestra Platform by adding Lumen on the same codebase as your primary application.
 
+[![Latest Stable Version](https://poser.pugx.org/orchestra/lumenate/version)](https://packagist.org/packages/orchestra/lumenate)
+[![Total Downloads](https://poser.pugx.org/orchestra/lumenate/downloads)](https://packagist.org/packages/orchestra/lumenate)
+[![Latest Unstable Version](https://poser.pugx.org/orchestra/lumenate/v/unstable)](//packagist.org/packages/orchestra/lumenate)
+[![License](https://poser.pugx.org/orchestra/lumenate/license)](https://packagist.org/packages/orchestra/lumenate)
+
 ## Installation
 
 First, install the Lumenate installer and make sure that the global Composer `bin` directory is within your system's `$PATH`:
