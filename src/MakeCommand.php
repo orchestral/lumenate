@@ -2,29 +2,18 @@
 
 namespace Orchestra\Lumenate;
 
+use Illuminate\Console\Concerns\InteractsWithIO;
+use Illuminate\Console\OutputStyle;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class MakeCommand extends Command
 {
-    use Concerns\PublishFiles;
-
-    /**
-     * The input interface implementation.
-     *
-     * @var \Symfony\Component\Console\Input\InputInterface
-     */
-    protected $input;
-
-    /**
-     * The output interface implementation.
-     *
-     * @var \Symfony\Component\Console\Output\OutputInterface
-     */
-    protected $output;
+    use InteractsWithIO,
+        Concerns\PublishFiles;
 
     /**
      * Configure the command options.
@@ -36,8 +25,8 @@ class MakeCommand extends Command
         $this->ignoreValidationErrors();
 
         $this->setName('make')
-                ->setDescription('Make Lumen skeleton into the current project.')
-                ->addOption('force', null, InputOption::VALUE_NONE, 'Overwrite any existing files.');
+            ->setDescription('Make Lumen skeleton into the current project.')
+            ->addOption('force', null, InputOption::VALUE_NONE, 'Overwrite any existing files.');
     }
 
     /**
@@ -47,8 +36,7 @@ class MakeCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->input = $input;
-        $this->output = $output;
+        $this->setOutput(new OutputStyle($input, $output));
 
         $filesystem = new Filesystem();
 
@@ -85,28 +73,6 @@ class MakeCommand extends Command
         return \array_map(static function ($path) use ($basePath) {
             return "{$basePath}/{$path}";
         }, \array_flip($paths));
-    }
-
-    /**
-     * Write a string as error output.
-     *
-     * @param  int|string|null  $verbosity
-     */
-    public function error(string $string, $verbosity = null): void
-    {
-        $this->output->writeln("<error>{$string}</error>", $verbosity);
-    }
-
-    /**
-     * Write a string as standard output.
-     *
-     * @param  string  $style
-     */
-    public function line(string $string, ?string $style = null): void
-    {
-        $styled = $style ? "<{$style}>{$string}</{$style}>" : $string;
-
-        $this->output->writeln($styled);
     }
 
     /**
